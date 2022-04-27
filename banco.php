@@ -13,7 +13,8 @@ $conexao	=	mysqli_connect($bdServidor,	$bdUsuario,	$bdSenha, $bdBanco);
 	die();
 }
 
-function buscar_tarefas($conexao){
+function buscar_tarefas($conexao)
+{
     $sqlBusca = 'SELECT * FROM tarefas';
     $resultado = mysqli_query($conexao, $sqlBusca);
 
@@ -34,18 +35,17 @@ function gravar_tarefa($conexao, $tarefa)
         $prazo = "'{$tarefa['prazo']}'";
     }
 
-    $sqlGravar = "
-    INSERT INTO tarefas
-    (nome, descricao, prioridade, prazo, concluida)
-    VALUES
-    (
-        '{$tarefa['nome']}',
-        '{$tarefa['descricao']}',
-        {$tarefa['prioridade']},
-        {$prazo},
-        {$tarefa['concluida']}
-        )
-    ";
+    $sqlGravar = " INSERT INTO tarefas
+                   (nome, descricao, prioridade, prazo, concluida)
+                   VALUES
+                   (
+                    '{$tarefa['nome']}',
+                    '{$tarefa['descricao']}',
+                    {$tarefa['prioridade']},
+                    {$prazo},
+                    {$tarefa['concluida']}
+                    )
+                ";
 
     mysqli_query($conexao, $sqlGravar);
 }
