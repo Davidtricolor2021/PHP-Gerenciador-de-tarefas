@@ -6,7 +6,6 @@ require "banco.php";
 require "ajudandes.php";
 
 $exibir_tabela = true;
-
 $tem_erros = false;
 $erros_validacao = [];
 
@@ -20,7 +19,7 @@ if (tem_post()) {
         'concluida' => 0,
     ];
 
-    if (strlen($tarefa['nome']) == 0){
+    if (strlen($tarefa['nome']) == 0) {
         $tem_erros = true;
         $erros_validacao['nome'] = 'O nome da tarefa é obrigatório!';
     }
@@ -55,8 +54,7 @@ $tarefa = [
     'id' => 0,
     'nome' => $_POST['nome'] ?? '',
     'descricao' => $_POST['descricao'] ?? '',
-    'prazo' => (isset($_POST['prazo']))
-        ? traduz_data_para_banco($_POST['prazo']) : '',
+    'prazo' => (isset($_POST['prazo'])) ? traduz_data_para_banco($_POST['prazo']) : '',
     'prioridade' => $_POST['prioridade'] ?? '',
     'concluida' => $_POST['concluida'] ??  ''
 ];
