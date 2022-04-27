@@ -33,9 +33,8 @@ if (tem_post()) {
             $tarefa['prazo'] = traduz_data_para_banco($_POST['prazo']);
         } else {
             $tem_erros = true;
-            $erros_validacao['prazo'] = 'O prazo não é uma data válida' ;
-        }
-            
+            $erros_validacao['prazo'] = 'O prazo não é uma data válida';
+        } 
     }
 
     if (array_key_exists('concluida', $_POST)) {
@@ -49,7 +48,7 @@ if (tem_post()) {
     }
 }
 
-$tarefa = buscar_tarefa($conexao, $_POST['id']);
+$tarefa = buscar_tarefa($conexao, $_GET['id']);
 
 $tarefa['nome'] = (array_key_exists('nome', $_POST)) ? $_POST['nome'] : $tarefa['nome'];
 
