@@ -31,10 +31,12 @@
                 ? 'checked'
                 : '';
             ?> />Baixa
+
             <input type="radio" name="prioridade" value="2" <?php echo ($tarefa['prioridade'] == 2)
                 ? 'checked'
                 : '';
             ?> />Média
+            
             <input type="radio" name="prioridade" value="3" <?php echo ($tarefa['prioridade'] == 3)
                 ? 'checked'
                 : '';
