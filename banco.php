@@ -34,6 +34,22 @@ function gravar_tarefa($conexao, $tarefa)
         $prazo = "'{$tarefa['prazo']}'";
     }
 
+    $sqlGravar = "
+    INSERT INTO tarefas
+    (nome, descricao, prioridade, prazo, concluida)
+    VALUES
+    (
+        '{$tarefa['nome']}',
+        '{$tarefa['descricao']}',
+        {$tarefa['prioridade']},
+        {$prazo},
+        {$tarefa['concluida']}
+        )
+    ";
+
+    mysqli_query($conexao, $sqlGravar);
+}
+
 function buscar_tarefa($conexao, $id) {
     $sqlBusca = 'SELECT * FROM tarefas WHERE id = ' . $id;
     $resultado = mysqli_query($conexao, $sqlBusca);
@@ -58,6 +74,7 @@ function editar_tarefa($conexao, $tarefa)
                 WHERE id = {$tarefa['id']} ";
 
     mysqli_query($conexao, $sqlEditar);
+
 }
 
 function remover_tarefa($conexao, $id)
@@ -65,20 +82,4 @@ function remover_tarefa($conexao, $id)
     $sqlRemover = "DELETE FROM tabelas WHERE id = {$id}";
     
     mysqli_query($conexao, $sqlRemover);
-}
-
-    $sqlGravar = "
-        INSERT INTO tarefas
-        (nome, descricao, prioridade, prazo, concluida)
-        VALUES
-        (
-            '{$tarefa['nome']}',
-            '{$tarefa['descricao']}',
-            {$tarefa['prioridade']},
-            {$prazo},
-            {$tarefa['concluida']}
-            )
-        ";
-
-        mysqli_query($conexao, $sqlGravar);
 }
