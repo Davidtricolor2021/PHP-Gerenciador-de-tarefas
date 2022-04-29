@@ -3,7 +3,7 @@
 session_start();
 
 require "banco.php";
-require "ajudandes.php";
+require "ajudantes.php";
 
 $exibir_tabela = true;
 $tem_erros = false;
@@ -33,7 +33,7 @@ if (tem_post()) {
             $tarefa['prazo'] = traduz_data_para_banco($_POST['prazo']);
         } else {
             $tem_erros = true;
-            $erros_validacao['prazo'] = 'O prazo não é uma data válida';
+            $erros_validacao['prazo'] = 'O prazo não é uma data válida!';
         }
     }
 
