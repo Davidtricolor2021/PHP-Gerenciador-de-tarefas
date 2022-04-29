@@ -3,7 +3,7 @@
 session_start();
 
 require "banco.php";
-require "ajudandes.php";
+require "ajudantes.php";
 
 $exibir_tabela = false;
 $tem_erros = false;
