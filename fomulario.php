@@ -18,7 +18,8 @@
         </label>
         <label>
             Prazo (Opcional):
-            <?php if ($tem_erros && array_key_exists('prazo', $erros_validacao)) : ?>
+            <?php 
+            if ($tem_erros && array_key_exists('prazo', $erros_validacao)) : ?>
                 <span class="erro">
                     <?php echo $erros_validacao['prazo']; ?>
                 </span>
@@ -36,7 +37,7 @@
                 ? 'checked'
                 : '';
             ?> />Média
-            
+
             <input type="radio" name="prioridade" value="3" <?php echo ($tarefa['prioridade'] == 3)
                 ? 'checked'
                 : '';
