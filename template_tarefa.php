@@ -13,20 +13,16 @@
                 </a>
             </p>
             <p>
-                <strong>Concluída:</strong>
-                <?php echo traduz_concluida($tarefa['concluida']); ?>
+                <strong>Concluída:</strong> <?php echo traduz_concluida($tarefa['concluida']); ?>
             </p>
             <p>
-                <strong>Descrição:</strong>
-                <?php echo nl2br($tarefa['descricao']); ?>
+                <strong>Descrição:</strong> <?php echo nl2br($tarefa['descricao']); ?>
             </p>
             <p>
-                <strong>Prazo:</strong>
-                <?php echo traduz_data_para_exibir($tarefa['prazo']); ?>
+                <strong>Prazo:</strong> <?php echo traduz_data_para_exibir($tarefa['prazo']); ?>
             </p>
             <p>
-                <strong>Prioridade:</strong>
-                <?php echo traduz_prioridade($tarefa['prioridade']); ?>
+                <strong>Prioridade:</strong> <?php echo traduz_prioridade($tarefa['prioridade']); ?>
             </p>
 
             <h2>Anexos<h2>
