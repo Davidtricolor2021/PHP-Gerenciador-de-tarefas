@@ -1,11 +1,6 @@
 <?php
 
-$bdServidor	=	'127.0.0.1';
-$bdUsuario	=	'sistematarefas';
-$bdSenha	=	'sistematarefas';
-$bdBanco	=	'tarefas';
-
-$conexao	=	mysqli_connect($bdServidor,	$bdUsuario,	$bdSenha, $bdBanco);
+$conexao = mysqli_connect(BD_SERVIDOR, BD_USUARIO, BD_SENHA, BD_BANCO);
 
     if	(mysqli_connect_errno($conexao))	{
 		echo "Problemas	para conectar no banco. Erro: ";
@@ -70,9 +65,10 @@ function editar_tarefa($conexao, $tarefa)
                     nome = '{$tarefa['nome']}',
                     descricao = '{$tarefa['descricao']}',
                     prioridade = {$tarefa['prioridade']},
-                    prazo = {prazo},
+                    prazo = '{$tarefa['prazo']}',
                     concluida = {$tarefa['concluida']}
-                WHERE id = {$tarefa['id']} ";
+                WHERE id = {$tarefa['id']} 
+    ";
 
     mysqli_query($conexao, $sqlEditar);
 
@@ -80,7 +76,7 @@ function editar_tarefa($conexao, $tarefa)
 
 function remover_tarefa($conexao, $id)
 {
-    $sqlRemover = "DELETE FROM tabelas WHERE id = {$id}";
+    $sqlRemover = "DELETE FROM tarefas WHERE id = {$id}";
     
     mysqli_query($conexao, $sqlRemover);
 }
