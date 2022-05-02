@@ -7,10 +7,10 @@
     <body>
         <h1>Gerenciador de Tarefas</h1>
         
-        <?php require 'formulario.php'; ?>
+        <?php include ('formulario.php'); ?>
 
         <?php if ($exibir_tabela) : ?>
-            <?php require 'tabela.php'; ?>
+            <?php include ('tabela.php'); ?>
         <?php endif; ?>
     </body>
 </html>
