@@ -1,7 +1,8 @@
 <?php
 
-include "banco.php";
-include "ajudantes.php";
+require "config.php";
+require "banco.php";
+require "ajudantes.php";
 
 $tarefa = buscar_tarefa($conexao, $_GET['id']);
 
@@ -38,4 +39,4 @@ if (tem_post()) {
 
 $anexos = buscar_anexos($conexao, $_GET['id']);
 
-include "template_tarefa.php";
+require "template_tarefa.php";
