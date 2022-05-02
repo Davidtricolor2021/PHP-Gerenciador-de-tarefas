@@ -1,11 +1,13 @@
-<?php
+<?php 
 
 session_start();
 
+require "config.php";
 require "banco.php";
 require "ajudantes.php";
 
 $exibir_tabela = true;
+
 $tem_erros = false;
 $erros_validacao = [];
 
@@ -43,6 +45,10 @@ if (tem_post()) {
 
     if (! $tem_erros) {
         gravar_tarefa($conexao, $tarefa);
+        
+        if (array_key_exists('lembrete', $_POST) && $_POST['lembrete'] == '1') {
+            enviar_email($tarefa); }
+
         header('Location: tarefas.php');
         die();
     }
