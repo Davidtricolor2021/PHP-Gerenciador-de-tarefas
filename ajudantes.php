@@ -103,3 +103,36 @@ function tratar_anexo($anexo) {
 
     return true;
 }
+
+function enviar_email($tarefa, $anexos = [])
+{
+    $corpo = preparar_corpo_email($tarefa, $anexos);
+
+    // Acessar a aplicação de e-mails;
+    // Fazer a autenticação com usuário e senha;
+    // Usar a opção para escrever um e-mail;
+    // Digitar o e-mail do destinatário;
+    // Digitar o assunto do e-mail;
+    // Escrever o corpo do e-mail;
+    // Adicionar os anexos, quando necessário;
+    // Usar a opção de enviar o e-mail.
+}
+
+function preparar_corpo_email($tarefa, $anexos)
+{
+    // Aqui vamos pegar o conteúdo processado do arquivo template_email.php
+
+    // Falar para o PHP que não é para enviar o resultado do processamento para o navegador:
+    ob_start();
+
+    // Incluir o arquivo template_email.php:
+    include "template_email.php";
+
+    // Guardar o conteúdo do arquivo em uma variável;
+    $corpo = ob_get_contents();
+
+    // Falar para o PHP que ele pode voltar a mandar conteúdos para o navegador.
+    ob_end_clean();
+
+    return $corpo;
+}
