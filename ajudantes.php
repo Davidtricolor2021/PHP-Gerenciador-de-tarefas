@@ -1,5 +1,7 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 function traduz_data_para_banco($data)
 {
     if ($data == "") {
@@ -106,33 +108,49 @@ function tratar_anexo($anexo) {
 
 function enviar_email($tarefa, $anexos = [])
 {
+    require "bibliotecas/PHPMailer/inc.php";
+
     $corpo = preparar_corpo_email($tarefa, $anexos);
 
-    // Acessar a aplicação de e-mails;
-    // Fazer a autenticação com usuário e senha;
-    // Usar a opção para escrever um e-mail;
-    // Digitar o e-mail do destinatário;
-    // Digitar o assunto do e-mail;
-    // Escrever o corpo do e-mail;
-    // Adicionar os anexos, quando necessário;
-    // Usar a opção de enviar o e-mail.
+    $email = new PHPMailer();
+
+    $email->isSMTP();
+    $email->Host = "smtp.gmail.com";
+    $email->Port = 587;
+    $email->SMTPSecure = 'tls';
+    $email->SMTPAuth = true;
+    $email->Username = "testesdavidphp@gmail.com";
+    $email->Password = "123Testesdavidphp@";
+    $email->setFrom("testesdavidphp@gmail.com", "Avisador de Tarefas");
+    $email->addAddress(EMAIL_NOTIFICACAO);
+    $email->Subject = "Aviso de tarefa: {$tarefa['nome']}";
+    $email->msgHTML($corpo);
+
+    foreach ($anexos as $anexo) {
+        $email->addAttachment("anexos/{$anexo['arquivo']}");
+    }
+
+    if (! $email->send()) {
+        gravar_log($email->ErrorInfo);
+    }
 }
 
 function preparar_corpo_email($tarefa, $anexos)
 {
-    // Aqui vamos pegar o conteúdo processado do arquivo template_email.php
-
-    // Falar para o PHP que não é para enviar o resultado do processamento para o navegador:
     ob_start();
-
-    // Incluir o arquivo template_email.php:
     include "template_email.php";
 
-    // Guardar o conteúdo do arquivo em uma variável;
     $corpo = ob_get_contents();
 
-    // Falar para o PHP que ele pode voltar a mandar conteúdos para o navegador.
     ob_end_clean();
 
     return $corpo;
+}
+
+function gravar_log($mensagem)
+{
+    $datahora = date("Y-m-d H:i:s");
+    $mensagem = "{$datahota} {$mensagem}\n";
+
+    file_put_contents("mensagens.log", $mensagem, FILE_APPEND);
 }
